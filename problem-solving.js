@@ -56,3 +56,57 @@ const updatePerson = (persons, updateName, updateAge) =>{
     return find;
 }
 console.log(updatePerson(persons, 'Bob', 22));
+// 6. Task: Array Reduction
+const numbers = [1, 4, 7, 9, 10, 13, 15, 16, 18, 20, 25, 28];
+const arrayReduction = (array) =>{
+ const result = array.reduce((acc, curr) =>{
+    if(curr % 2 === 0){
+        return acc + curr;
+    }
+    return acc;
+  }, 0)
+  return result;
+}
+console.log(arrayReduction(numbers));
+// 7. Task: Leap Year Checker
+const leapYearChecker = (year) =>{
+  if(year % 400 === 0 || (year % 4 ===0 && year % 100 !== 0)){
+      console.log(`${year} is a Leap Year`)
+  }else{
+      console.log(`${year} is not a Leap Year`)
+  }
+}
+leapYearChecker(2025);
+// 8. Task: Count Vowels:
+const countVowels = (string) =>{
+  let count = 0;
+  const vowels = ["a", "e", "i", "o", "u", "A", "E", "I", "O", "U"];
+  for(let s of string){
+      if(vowels.includes(s)){
+          count++;
+      }
+  }
+  return count;
+}
+console.log(countVowels("Happy New Year"));
+      
+// 9. Task: Unique Values
+const duplicateNumbers = [1, 4, 7, 9, 10, 13, 15, 16, 18, 20, 25, 28, 10, 4, 15];
+const removeDuplicate = (numbers) =>{
+    // return [...new Set(numbers)];
+    return numbers.filter((num, index) => numbers.indexOf(num) ===  index);
+}
+console.log(removeDuplicate(duplicateNumbers));
+     
+// 10. Task: Find Maximum Value:
+const findMaxNumber = (numbers) =>{
+  let max = 1;
+  for (let i = 0; i < numbers.length; i++) {
+   console.log(numbers[i])
+   if(numbers[i] > max){
+       max = numbers[i];
+       }
+  }
+  return max;
+}
+console.log(findMaxNumber(duplicateNumbers));
