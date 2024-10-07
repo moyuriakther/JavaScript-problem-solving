@@ -110,3 +110,139 @@ const findMaxNumber = (numbers) =>{
   return max;
 }
 console.log(findMaxNumber(duplicateNumbers));
+
+// 11. Task: Advanced Sorting
+const students = [
+  { name: "Alice", grades: [90, 85, 88] },
+  { name: "Bob", grades: [78, 82, 80] },
+  { name: "Charlie", grades: [92, 91, 95] },
+  { name: "David", grades: [85, 87, 84] },
+  { name: "Eva", grades: [89, 90, 92] }
+];
+const sortByAvgGrade = (array) =>{
+  const res = array.map((student) =>{
+    const totalGrades = student.grades.reduce((acc, curr) => acc + curr, 0);
+    const avgGrade = Math.round(totalGrades / student.grades.length);
+    return {...student, avgGrade};
+  })
+  const sortedStudents = res.sort((a, b) => b.avgGrade-a.avgGrade);
+  console.log(sortedStudents)
+}
+sortByAvgGrade(students);
+
+12. // Task: Functional Programming - Reduce
+const items = [
+  { quantity: 2, price: 100 },
+  { quantity: 5, price: 150 },
+  { quantity: 1, price: 200 },
+  { quantity: 4, price: 75 },
+  { quantity: 3, price: 50 }
+];
+const calculateTotalArrayOfObjects = (items) =>{
+    const res = items.reduce((acc, curr) => acc + (curr.quantity * curr.price), 0);
+  
+  console.log(res)
+}
+calculateTotalArrayOfObjects(items);
+
+13. // Task: Array Intersection
+const array1 = [1, 2, 3, 4, 5];
+const array2 = [4, 5, 6, 7, 8];
+  const arrayIntersection = (array1, array2) =>{
+    let newArray = [];
+    array1.forEach(element => {
+        if(array2.includes(element)){
+            newArray.push(element)
+        }
+    });
+    console.log(newArray)
+  }
+arrayIntersection(array1, array2);
+
+14. // Task: Object Transformation
+const customers = [
+  { 
+    name: "John Doe", 
+    purchases: [
+      { item: "Laptop", amount: 1200 },
+      { item: "Mouse", amount: 25 },
+      { item: "Keyboard", amount: 50 },
+      { item: "Monitor", amount: 300 },
+      { item: "Headset", amount: 100 },
+      { item: "USB Cable", amount: 10 }
+    ], 
+    loyaltyPoints: 150 
+  },
+  { 
+    name: "Jane Smith", 
+    purchases: [
+      { item: "Phone", amount: 800 },
+      { item: "Headphones", amount: 100 }
+    ], 
+    loyaltyPoints: 200 
+  },
+  { 
+    name: "Alice Johnson", 
+    purchases: [
+      { item: "Monitor", amount: 300 },
+      { item: "Keyboard", amount: 50 },
+      { item: "Mouse Pad", amount: 10 }
+    ], 
+    loyaltyPoints: 120 
+  },
+  { 
+    name: "Bob Brown", 
+    purchases: [
+      { item: "Tablet", amount: 500 },
+      { item: "Charger", amount: 30 },
+      { item: "Case", amount: 25 },
+      { item: "Screen Protector", amount: 10 },
+      { item: "Earbuds", amount: 50 },
+      { item: "Stylus", amount: 20 }
+    ], 
+    loyaltyPoints: 180 
+  }
+];
+  
+const objectTransform = (customers) =>{
+ return customers.map(element => {
+      if(element.purchases.length > 5){
+          const newObject = {...element, loyaltyPoints: element.loyaltyPoints * 2}
+          return newObject;
+      }
+      return element;
+ })
+  
+}
+console.log(objectTransform(customers));
+
+// Task: Function Memoization
+
+const memoize = (func) =>{
+  const cache = new Map();
+  
+  return function(...args){
+    const key = JSON.stringify(args); // Create unique key for cache based on argument
+    
+    if(cache.has(key)){ //check if it is already in cache
+      console.log(key);
+      return cache.get(key);
+    }
+  
+  const result = func(...args); // call function if not cached
+  cache.set(key, result); // store result in cache
+  console.log(key);
+  return result;
+  }
+}
+
+const factorial = (n) =>{
+  if(n === 0 || n === 1) return 1;
+  return n*factorial(n-1);
+}
+
+const memoFactorial = memoize(factorial);
+console.log(memoFactorial(10));
+console.log(memoFactorial(10));
+console.log(memoFactorial(15));
+console.log(memoFactorial(15));
